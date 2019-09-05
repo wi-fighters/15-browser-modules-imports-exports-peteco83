@@ -6,4 +6,4 @@
 * Read through the code. Once you have understood the logic, import/export the relevant functions or variables to the correct files.
 
 **Notes**:
-* Deadline: ~ 30 minutes - 1hour
+* Deadline: ~ 30 minutes
