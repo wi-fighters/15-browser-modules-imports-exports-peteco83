@@ -1,6 +1,8 @@
 import { modulo, percentage, percentageOf, difference } from "/modules/percentage.js";
 
-let calculations = ["modulo", "percentage", "percentageOf", "difference"];
+import {calculateAspectRatio} from "/modules/aspect-ratio.js"
+
+let calculations = ["modulo", "percentage", "percentageOf", "difference", "ratio"];
 
 function calcOnChange(inputArray, input, resultCalc, calculation) {
     input.addEventListener('change', () => {
@@ -30,5 +32,12 @@ calculations.forEach(calculation => {
         if (field.classList.contains("difference")) {
             calcOnChange(input, field, result, difference);
         }
+    })
+    let ratioInputs = document.querySelectorAll(".ratio");
+    let newRatios = [document.getElementById("ratio_result-width"), document.getElementById("ratio_result-height")];
+    ratioInputs.forEach(ratio => {
+        ratio.addEventListener('change', () => {
+            calculateAspectRatio(Number(input[0].value), Number(input[1].value), newRatios)
+        })
     })
 });
