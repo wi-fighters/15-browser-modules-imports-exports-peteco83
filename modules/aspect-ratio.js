@@ -11,7 +11,4 @@ function calculateAspectRatio(originalWidth, originalHeight, newValue, valueType
         originalHeight / originalWidth;
     return fixRoundingErrors(formula * newValue);
 }
-
-console.log(calculateAspectRatio(1, 3, 6, "w"));
-
 export { calculateAspectRatio };
