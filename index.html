@@ -94,7 +94,7 @@
             </form> -->
 
             <h2>Special operations</h2>
-            <form>
+            <form id="modulo-form">
                 <legend>Modulo</legend>
                 <div class="form-row align-items-center mb-3">
                     <div class="col">
@@ -115,7 +115,7 @@
 
             <!-- Percentage Calculations -->
             <h2>Percentage Calculations</h2>
-            <form>
+            <form id="percentage-form">
                 <div class="form-row align-items-center mb-3">
                     <span class="lead">What is</span>
 
@@ -134,11 +134,13 @@
                             data-operation="percent" />
                     </div>
                 </div>
+            </form>
 
-
+            <form id="percentageOf-form">
                 <div class="form-row align-items-center mb-3">
                     <div class="col">
-                        <input type="number" id="percentageOf_1" class="percentageOf operand form-control" value="0" step="1" />
+                        <input type="number" id="percentageOf_1" class="percentageOf operand form-control" value="0"
+                            step="1" />
                     </div>
                     <span class="lead"> is what percent of </span>
                     <div class="col">
@@ -152,7 +154,9 @@
                     </div>
                     <span class="lead">%</span>
                 </div>
+            </form>
 
+            <form id="difference-form">
                 <span class="lead"> What is the percentage increase/decrease from </span>
                 <div class="form-row align-items-center mb-3">
 
@@ -176,7 +180,7 @@
 
             <h2>Aspect Ratio Calculations</h2>
             <legend>Find the missing new height or width</legend>
-            <form>
+            <form id="aspect-form">
                 <div class="form-row align-items-center mb-5">
                     <span class="lead">Original width:</span>
                     <div class="col">
