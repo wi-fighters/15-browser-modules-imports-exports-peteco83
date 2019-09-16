@@ -1,43 +1,62 @@
 import { modulo, percentage, percentageOf, difference } from "/modules/percentage.js";
+import { calculateAspectRatio } from "/modules/aspect-ratio.js"
 
-import {calculateAspectRatio} from "/modules/aspect-ratio.js"
-
-let calculations = ["modulo", "percentage", "percentageOf", "difference", "ratio"];
-
-function calcOnChange(inputArray, input, resultCalc, calculation) {
-    input.addEventListener('change', () => {
-        resultCalc.value = calculation(Number(inputArray[0].value), Number(inputArray[1].value));
-    })
-}
-
-calculations.forEach(calculation => {
-    // Get the input fields for the operator
-    const input = [
-        document.getElementById(`${calculation}_1`),
-        document.getElementById(`${calculation}_2`)
-    ];
-    // Get the result field for the operator
-    const result = document.getElementById(`${calculation}_result`);
-
-    input.forEach((field) => {
-        if (field.classList.contains("arithmetic")) {
-            calcOnChange(input, field, result, modulo);
-        }
-        if (field.classList.contains("percentage")) {
-            calcOnChange(input, field, result, percentage);
-        }
-        if (field.classList.contains("percentageOf")) {
-            calcOnChange(input, field, result, percentageOf)
-        }
-        if (field.classList.contains("difference")) {
-            calcOnChange(input, field, result, difference);
-        }
-    })
-    let ratioInputs = document.querySelectorAll(".ratio");
-    let newRatios = [document.getElementById("ratio_result-width"), document.getElementById("ratio_result-height")];
-    ratioInputs.forEach(ratio => {
-        ratio.addEventListener('change', () => {
-            calculateAspectRatio(Number(input[0].value), Number(input[1].value), newRatios)
-        })
-    })
+const moduloForm = document.getElementById("modulo-form");
+moduloForm.addEventListener("change", (e) => {
+    const result = document.getElementById("modulo_result");
+    const input = [document.getElementById("modulo_1"), document.getElementById("modulo_2")]
+    switch (e.target.id) {
+        case "modulo_1":
+        case "modulo_2":
+            result.value = modulo(Number(input[0].value), Number(input[1].value));
+    }
 });
+
+const percentageForm = document.getElementById("percentage-form");
+percentageForm.addEventListener("change", (e) => {
+    const result = document.getElementById("percentage_result");
+    const input = [document.getElementById("percentage_1"), document.getElementById("percentage_2")];
+    switch (e.target.id) {
+        case "percentage_1":
+        case "percentage_2":
+            result.value = percentage(Number(input[0].value), Number(input[1].value));
+    }
+});
+
+const percentageOfForm = document.getElementById("percentageOf-form");
+percentageOfForm.addEventListener("change", (e) => {
+    const result = document.getElementById("percentageOf_result");
+    const input = [document.getElementById("percentageOf_1"), document.getElementById("percentageOf_2")];
+    switch (e.target.id) {
+        case "percentageOf_1":
+        case "percentageOf_2":
+            result.value = percentageOf(Number(input[0].value), Number(input[1].value));
+    }
+});
+
+const differenceForm = document.getElementById("difference-form");
+differenceForm.addEventListener("change", (e) => {
+    const result = document.getElementById("difference_result");
+    const input = [document.getElementById("difference_1"), document.getElementById("difference_2")];
+    switch (e.target.id) {
+        case "difference_1":
+        case "difference_2":
+            result.value = difference(Number(input[0].value), Number(input[1].value));
+    }
+})
+
+const aspectForm = document.getElementById("aspect-form");
+const newWidth = document.getElementById("ratio_result-width");
+const newHeight = document.getElementById("ratio_result-height");
+aspectForm.addEventListener("change", (e) => {
+    let result;
+    const input = [document.getElementById("ratio_1"), document.getElementById("ratio_2")];
+    switch (e.target.id) {
+        case "ratio_result-width":
+            result = newHeight;
+            result.value = calculateAspectRatio(Number(input[0].value), Number(input[1].value), newWidth.value, "w");
+        case "ratio_result-height":
+            result = newWidth;
+            result.value = calculateAspectRatio(Number(input[0].value), Number(input[1].value), newHeight.value, "h");
+    }
+})
