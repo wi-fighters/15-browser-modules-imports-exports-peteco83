@@ -1,4 +1,4 @@
-# Calculator App: Imports & Exports
+# Calc X
 
 **Instructions**:
 * Look through the starting files provided in this repository. You will find the logic of the calculator app in `percentage.js` and `aspect-ratio.js`. 
