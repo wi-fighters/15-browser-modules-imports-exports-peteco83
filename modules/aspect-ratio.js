@@ -1,17 +1,13 @@
-function calculateAspectRatio(originalWidth, originalHeight, newValues) {
-    let resultWidth = newValues[0];
-    let resultHeight = newValues[1];
-  
-    if ((originalWidth > 0) && (originalHeight > 0)) {
-        newValues.forEach(newValue => {
-            if ((newValue.classList.contains("height")) && (newValue.value > 0)) {
-                return resultWidth.value = ((originalWidth / originalHeight) * newValue.value).toFixed(2);
-                
-            } else if ((newValue.classList.contains("width")) && (newValue.value > 0)) {
-                newValue.style.outline = "pink";
-                return resultHeight.value = ((originalHeight / originalWidth) * newValue.value).toFixed(2);
-            }
-        })
-    }
+function fixRoundingErrors(float) {
+    return parseFloat(float.toFixed(2));
 }
 
+function calculateAspectRatio(originalWidth, originalHeight, newValue, valueType) {
+    if ((originalHeight <= 0) || (originalWidth <= 0) || (newValue <= 0)) {
+        return 0;
+    }
+    let formula = (valueType === "h") ?
+        originalWidth / originalHeight :
+        originalHeight / originalWidth;
+    return fixRoundingErrors(formula * newValue);
+}
